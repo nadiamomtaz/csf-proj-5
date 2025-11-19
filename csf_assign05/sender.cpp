@@ -170,7 +170,7 @@ int main(int argc, char **argv) {
       std::cout << "  leave [room_name]   - Leave a chat room" << std::endl;
       std::cout << "  sendall [message]   - Send message to all users in current room" << std::endl;
       std::cout << "  senduser [username] [message] - Send private message to user" << std::endl;
-      std::cout << "  quit                - Exit the client" << std::cout;
+      std::cout << "  quit                - Exit the client" << std::endl;
       std::cout << "  help                - Show this help message" << std::endl;
 
     } else {
