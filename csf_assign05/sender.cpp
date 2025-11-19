@@ -21,7 +21,17 @@ int main(int argc, char **argv) {
   server_port = std::stoi(argv[2]);
   username = argv[3];
 
-  // TODO: connect to server
+  Connection connection;
+  try {
+    connection.connect(server_hostname, server_port);
+    if (!connection.is_open()) {
+      std::cerr << "Failed to connect to server" << std::endl;
+      return 1;
+    }
+  } catch (const std::exception &e) {
+    std::cerr << "Failed to connect to server" << std::endl;
+    return 1;
+  }
 
   // TODO: send slogin message
 
