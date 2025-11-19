@@ -33,7 +33,25 @@ int main(int argc, char **argv) {
     return 1;
   }
 
-  // TODO: send slogin message
+  Message slogin_msg(TAG_SLOGIN, username);
+  if (!connection.send(slogin_msg)) {
+    std::cerr << "Connection lost during login" << std::endl;
+    return 1;
+  }
+
+  Message response;
+  if (!connection.receive(response)) {
+    std::cerr << "Connection lost during login" << std::endl;
+    return 1;
+  }
+
+  if (response.tag == TAG_ERR) {
+    std::cerr << response.data << std::endl;
+    return 1;
+  } else if (response.tag != TAG_OK) {
+    std::cerr << "Unexpected server response during login" << std::endl;
+    return 1;
+  }
 
   // TODO: loop reading commands from user, sending messages to
   //       server as appropriate
